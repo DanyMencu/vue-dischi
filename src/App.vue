@@ -25,5 +25,5 @@ export default {
 
 <style lang="scss">
 @import '~bootstrap/scss/bootstrap.scss';
-@import '@/styles/Generals';
+@import '@/styles/Generals.scss';
 </style>

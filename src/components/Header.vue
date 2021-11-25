@@ -21,6 +21,7 @@ export default {
 
 section {
     height: 10vh;
+    padding: 5px;
     background: #2e3a46;
     
     img {
