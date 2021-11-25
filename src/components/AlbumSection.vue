@@ -57,7 +57,6 @@ export default {
 <style scoped lang="scss">
 
     section {
-        height: 90vh;
         text-align: center;
         padding: 3.5rem 1.5rem;
         color: #fff;
