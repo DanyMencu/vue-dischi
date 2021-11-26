@@ -9,10 +9,8 @@
                     <label for="genre">Musical genre:</label>
                     <select name="genre" v-model="Genres" @change="$emit('genreSelect', Genres)">
                         <option value="">All</option>
-                        <option value="rock">Rock</option>
-                        <option value="pop">Pop</option>
-                        <option value="jazz">Jazz</option>
-                        <option value="metal">Metal</option>
+                        <option v-for="(element, index) in allGenres" :key="`Genre-${index}`" :value="element"> {{ element }} </option>
+
                     </select>
                 </div>
             </div>
@@ -23,6 +21,9 @@
 <script>
 export default {
     name: 'Header',
+    props: {
+        allGenres: Array,
+    },
     data() {
         return {
             Genres: '',

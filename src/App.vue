@@ -1,7 +1,8 @@
 <template>
     <div id="app">
         <!-- HEADER -->
-        <Header @genreSelect="genreChosen" />
+        <Header :allGenres="genresCollection"
+        @genreSelect="genreChosen" />
 
         <!-- MAIN -->
         <main>
@@ -25,18 +26,19 @@ export default {
         return {
             albumCollection: null,
             Genres: '',
+            genresCollection: [],
         };
   },
   computed: {
-      filterGenres() {
-        if (this.Genres === '') {
-          return this.albumCollection;
-        }
-
-        return this.albumCollection.filter(item => {
-          return item.genre.toLowerCase().includes(this.Genres)
-        });
+    filterGenres() {
+      if (this.Genres === '') {
+        return this.albumCollection;
       }
+
+      return this.albumCollection.filter(item => {
+        return item.genre.toLowerCase().includes(this.Genres.toLowerCase())
+      });
+    }
   },
   created() {
         this.getAlbum();
@@ -48,11 +50,22 @@ export default {
               .get('https://flynn.boolean.careers/exercises/api/array/music')
               .then(result => {
                   this.albumCollection = result.data.response;
+                  this.selectGenreTypes();
               })
               .catch(error => console.log(error));
+
       },
       genreChosen(genre) {
           this.Genres = genre;
+      },
+      selectGenreTypes() {
+        this.albumCollection.forEach(element => {
+          if (!this.genresCollection.includes(element.genre) ) {
+              this.genresCollection.push(element.genre);
+          }
+        });
+        
+          console.log(this.genresCollection);
       }
   }
 }
